@@ -35,13 +35,12 @@ int main(void){
         op = menu();
         switch(op) {
               case 1:
-                if (Ptr != NULL) free(Ptr);
                 Ptr = crearDato();
                 break;
 
             case 2:
                 if (Ptr != NULL) {
-                    printf("Dato almacenado: %d\n", Ptr->d);
+                    printf("Dato almacenado: %d\n", Ptr *d);
                 } else {
                     printf("No hay datos creados.\n");
                 }
@@ -58,7 +57,7 @@ int main(void){
                 break;
 
             case 4:
-                if (Ptr != NULL) free(Ptr);
+                free(Ptr);
                 printf("Saliendo...\n");
                 break;
 
