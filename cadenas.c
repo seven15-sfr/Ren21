@@ -19,12 +19,17 @@ struct Dato{
     
     struct Dato* crearDato(){
     struct Dato *nuevo=(struct Dato*)malloc(sizeof(struct Dato));
+    if(nuevo==NULL){
+    return NULL;
+    }else{
     printf("Ingrese el valor entero: ");
     scanf("%d",&nuevo->d);
+    nuevo->d==dato;
     nuevo->Ptisig=NULL;
     printf("Modulo creado en memoria.\n");
     
     return nuevo;
+    }
     }
     
 int main(void){
@@ -36,6 +41,12 @@ int main(void){
         switch(op) {
               case 1:
                 Ptr = crearDato();
+                if(nuevo==NULL){
+                    printf("No se reservo memoria");
+                }else{
+                    if(Ptr==NULL){
+                    Ptr==nuevo;
+                    }
                 break;
 
             case 2:
