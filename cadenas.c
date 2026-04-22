@@ -3,7 +3,7 @@
 
 struct Dato{
     int d;
-    struct Dato *Ptisig;
+    struct Dato *Ptisig,*Ptraux,*Ptr;
     };
     
     int menu(void){
@@ -42,11 +42,17 @@ int main(void){
               case 1:
                 Ptr = crearDato();
                 if(nuevo==NULL){
-                    printf("No se reservo memoria");
+                printf("No se reservo memoria");
                 }else{
-                    if(Ptr==NULL){
-                    Ptr==nuevo;
-                    }
+                if(Ptr==NULL){
+                Ptr==nuevo;
+                }else{
+                    Ptraux=Ptr;
+                }while (Ptraux->Ptisig!=NULL){
+                    Ptraux=Ptraux->Ptisig;
+                    Ptraux->Ptisig=nuevo;
+                }
+                
                 break;
 
             case 2:
@@ -77,4 +83,5 @@ int main(void){
         }
     } while(op != 4);
 return 0;
+}
 }
