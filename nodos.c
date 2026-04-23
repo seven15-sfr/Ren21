@@ -8,8 +8,8 @@ struct Dato {
 
 int menu(void) {
     int op;
-    printf("\n--- MENU ---\n");
-    printf("1. Crear dato (Insertar al final)\n");
+    printf("MENU \n");
+    printf("1. Crear un dato \n");
     printf("2. Mostrar todos los datos\n");
     printf("3. Eliminar ultimo campo\n");
     printf("4. Salir: ");
@@ -25,7 +25,7 @@ struct Dato* crearDato() {
     printf("Ingrese el valor entero: ");
     scanf("%d", &Ptrtemp->d);
     Ptrtemp->Ptisig = NULL;
-    printf("Modulo creado en memoria.\n");
+    printf("Campo de memoria creado\n");
     return Ptrtemp;
 }
 
@@ -41,7 +41,7 @@ int main(void) {
             case 1:
                 Ptrtemp = crearDato();
                 if (Ptrtemp == NULL) {
-                    printf("Error: No se reservo memoria\n");
+                    printf("No se pudo reservo memoria\n");
                 } else {
                     if (Ptr == NULL) {
                         Ptr = Ptrtemp;
@@ -57,12 +57,12 @@ int main(void) {
 
             case 2:
                 if (Ptr == NULL) {
-                    printf("La lista esta vacia.\n");
+                    printf("La lista vacia\n");
                 } else {
                     Ptraux = Ptr;
                     printf("Contenido: ");
                     while (Ptraux != NULL) {
-                        printf("[%d] -> ", Ptraux->d);
+                        printf("%d ", Ptraux->d);
                         Ptraux = Ptraux->Ptisig;
                     }
                     printf("NULL\n");
@@ -75,7 +75,7 @@ int main(void) {
                 } else if (Ptr->Ptisig == NULL) {
                     free(Ptr);
                     Ptr = NULL;
-                    printf("Lista ahora vacia.\n");
+                    printf("Lista vacia\n");
                 } else {
                     Ptraux = Ptr;
                     while (Ptraux->Ptisig->Ptisig != NULL) {
@@ -83,7 +83,7 @@ int main(void) {
                     }
                     free(Ptraux->Ptisig);
                     Ptraux->Ptisig = NULL;
-                    printf("Ultimo nodo eliminado.\n");
+                    printf("Ultimo nodo eliminado\n");
                 }
                 break;
 
