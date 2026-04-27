@@ -1,87 +1,108 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Dato{
+struct Dato {
     int d;
-    struct Dato *Ptisig,*Ptraux,*Ptr;
-    };
-    
-    int menu(void){
+    struct Dato *Ptisig; 
+};
+
+int menu(void) {
     int op;
-    printf(" MENU \n");
-    printf("1. Crear dato\n");
-    printf("2. Mostrar dato\n");
-    printf("3. Liberar \n");
-    printf("4. Salir: ");
-    scanf("%d",&op);
+    printf("MENU \n");
+    printf("1. Crear un dato \n");
+    printf("2. Mostrar todos los datos \n");
+    printf("3. Eliminar ultimo campo \n");
+    printf("4. Salir: \n");
+    scanf("%d", &op);
     return op;
-    };
-    
-    struct Dato* crearDato(){
-    struct Dato *nuevo=(struct Dato*)malloc(sizeof(struct Dato));
-    if(nuevo==NULL){
-    return NULL;
-    }else{
+}
+
+struct Dato* crearDato() {
+    struct Dato *Ptrtemp = (struct Dato*)malloc(sizeof(struct Dato));
+    if (Ptrtemp == NULL) {
+        return NULL;
+    }
     printf("Ingrese el valor entero: ");
-    scanf("%d",&nuevo->d);
-    nuevo->d==dato;
-    nuevo->Ptisig=NULL;
-    printf("Modulo creado en memoria.\n");
-    
-    return nuevo;
-    }
-    }
-    
-int main(void){
+    scanf("%d", &Ptrtemp->d);
+    Ptrtemp->Ptisig = NULL;
+    printf("Campo de memoria creado\n");
+    return Ptrtemp;
+}
+
+int main(void) {
     int op;
-    struct Dato *Ptr=NULL;
+    struct Dato *Ptr = NULL;    
+    struct Dato *Ptraux = NULL;  
+    struct Dato *Ptrtemp = NULL; 
 
     do {
         op = menu();
         switch(op) {
-              case 1:
-                Ptr = crearDato();
-                if(nuevo==NULL){
-                printf("No se reservo memoria");
-                }else{
-                if(Ptr==NULL){
-                Ptr==nuevo;
-                }else{
-                    Ptraux=Ptr;
-                }while (Ptraux->Ptisig!=NULL){
-                    Ptraux=Ptraux->Ptisig;
-                    Ptraux->Ptisig=nuevo;
+            case 1:
+                Ptrtemp = crearDato();
+                if (Ptrtemp == NULL) {
+                    printf("No se pudo reservo memoria \n");
+                } else {
+                    if (Ptr == NULL) {
+                        Ptr = Ptrtemp;
+                    } else {
+                        Ptraux = Ptr;
+                    while(Ptraux->Ptisig != NULL){
+                        Ptraux = Ptraux->Ptisig;
+                        }
+                        Ptraux->Ptisig = Ptrtemp;
+                    }
                 }
-                
                 break;
 
             case 2:
-                if (Ptr != NULL) {
-                    printf("Dato almacenado: %d\n", Ptr *d);
+                if (Ptr == NULL) {
+                    printf("Lista vacia \n");
                 } else {
-                    printf("No hay datos creados.\n");
+                    Ptraux = Ptr;
+                    printf("Contenido: ");
+                    while (Ptraux != NULL){
+                        printf("%d ",Ptraux->d);
+                        Ptraux = Ptraux->Ptisig;
+                    }
                 }
                 break;
 
-            case 3:
-                if (Ptr != NULL) {
-                    free(Ptr);
-                    Ptr = NULL;
-                    printf("Memoria liberada.\n");
-                } else {
-                    printf("Nada que liberar.\n");
+            case 3: 
+                if (Ptr == NULL) {
+                    printf("Nada que eliminar\n");
+                }else{
+                    Ptraux = Ptr;
+                    if (Ptraux->Ptisig != NULL){
+                        Ptraux=Ptraux->Ptisig;
+                    }
+                    free(Ptraux->Ptisig);
+                    Ptraux->Ptisig = NULL;
+                    printf("Ultimo nodo eliminado\n");
+                }else{
+                    Ptraux=Ptr;
+                    while (Ptraux->Ptisig->Ptisig != NULL) {
+                        Ptraux=Ptraux->Ptisig;
+                    }
+                    free(Ptraux->Ptisig);
+                    Ptraux->Ptisig=NULL;
                 }
                 break;
 
             case 4:
-                free(Ptr);
-                printf("Saliendo...\n");
+                while (Ptr==NULL)
+                {
+                    Ptraux = Ptr;
+                    Ptr = Ptr->Ptisig;
+                    free(Ptraux)
+                }
+                printf("Saliendo\n");
                 break;
 
             default:
-                printf("Opción no válida\n");
+                printf("Opcion no valida\n");
         }
     } while(op != 4);
-return 0;
-}
+
+    return 0;
 }
