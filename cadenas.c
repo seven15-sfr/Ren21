@@ -8,11 +8,11 @@ struct Dato {
 
 int menu(void) {
     int op;
-    printf("MENU \n");
+    printf("   MENU \n");
     printf("1. Crear un dato \n");
     printf("2. Mostrar todos los datos \n");
     printf("3. Eliminar ultimo campo \n");
-    printf("4. Salir: \n");
+    printf("4. Salir \n");
     scanf("%d", &op);
     return op;
 }
@@ -25,7 +25,7 @@ struct Dato* crearDato() {
     printf("Ingrese el valor entero: ");
     scanf("%d", &Ptrtemp->d);
     Ptrtemp->Ptisig = NULL;
-    printf("Campo de memoria creado\n");
+    printf("Campo de memoria creado \n");
     return Ptrtemp;
 }
 
@@ -70,7 +70,7 @@ int main(void) {
 
             case 3: 
                 if (Ptr == NULL) {
-                    printf("Nada que eliminar\n");
+                    printf("Nada que eliminar \n");
                 }else{
                     Ptraux = Ptr;
                     if (Ptraux->Ptisig != NULL){
@@ -78,10 +78,10 @@ int main(void) {
                     }
                     free(Ptraux->Ptisig);
                     Ptraux->Ptisig = NULL;
-                    printf("Ultimo nodo eliminado\n");
+                    printf("Ultimo nodo eliminado \n");
                 }else{
                     Ptraux=Ptr;
-                    while (Ptraux->Ptisig->Ptisig != NULL) {
+                    while (Ptraux->Ptisig->Ptisig!=NULL){
                         Ptraux=Ptraux->Ptisig;
                     }
                     free(Ptraux->Ptisig);
@@ -90,8 +90,7 @@ int main(void) {
                 break;
 
             case 4:
-                while (Ptr==NULL)
-                {
+                while (Ptr !=NULL){
                     Ptraux = Ptr;
                     Ptr = Ptr->Ptisig;
                     free(Ptraux)
@@ -100,7 +99,7 @@ int main(void) {
                 break;
 
             default:
-                printf("Opcion no valida\n");
+                printf("Opcion no valida \n");
         }
     } while(op != 4);
 
