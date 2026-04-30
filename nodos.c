@@ -16,7 +16,11 @@ int menu(void) {
     scanf("%d", &op);
     return op;
 }
-
+int submenu(void){
+    int sub;
+    printf("submenu");
+    return sub;
+};
 struct Dato* crearDato() {
     struct Dato *Ptrtemp = (struct Dato*)malloc(sizeof(struct Dato));
     if (Ptrtemp == NULL) {
