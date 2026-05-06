@@ -22,7 +22,7 @@ int submenu(void){
     printf("\n SUB-MENU \n");
     printf("1. Buscar \n");
     printf("2. Contar \n");
-    printf("3. Remplazr \n");
+    printf("3. Remplazar \n");
     printf("4. Ordenar \n");
     printf("5. Regresar \n");
     scanf("%d",&sub);
@@ -42,10 +42,11 @@ struct Dato* crearDato() {
 }
 
 int main(void) {
-    int op,sub;
+    int op, sub, buscar, remplazar, nuevoVal, contador;    
     struct Dato *Ptr = NULL;    
     struct Dato *Ptraux = NULL;  
     struct Dato *Ptrtemp = NULL; 
+    struct Dato *Ptrant = NULL;
 
     do {
         op = menu();
@@ -71,38 +72,75 @@ int main(void) {
                 do{
                 sub=submenu();
                 switch (sub){
-                case 1: 
-                    if(Ptr==NULL){
-                    printf("Nada que buscar \n");
-                }else{
-                    printf("Si existe el dato buscado \n");
-                }
-                break;
-                case 2:
-                    if(Ptr==NULL){
-                        printf("Nada que contar \n");
-                    }else{
-                        while (Ptr!= NULL){
-                            Ptr++;
-                        printf("Total de contenido: %d\n");
-
-                        }
+                case 1://Buscar
+                    if(Ptr == NULL) {
+                        printf("Lista vacia \n");
+                    } else {
+                        printf("Valor a buscar: ");
+                        scanf("%d", &buscar);
+                        Ptraux = Ptr;
                     }
+                        while(Ptraux != NULL) {
+                            if(Ptraux->d == buscar){
+                            Ptraux = Ptraux->Ptisig;
+                            }
+                        if (printf("El dato %d ya existe en la lista \n", buscar));
+                        else (printf("No encontrado \n"));
+                            
+                        }
                 break;
-                case 3:
-                 if(Ptr==NULL){
-                    printf("Nada que remplazar \n");
-                }
+
+                case 2://contar
+                        contador = 0;
+                        Ptraux = Ptr;
+                        while (Ptraux != NULL) {
+                            contador++;
+                            Ptraux = Ptraux->Ptisig;
+                        }
+                        printf("Total de nodos: %d \n", contador);
                 break;
-                case 4:
+
+                case 3://remplazar
+                        if(Ptr == NULL) {
+                            printf("Nada que reemplazar.\n");
+                        } else {
+                            printf("Valor a cambiar: "); 
+                            scanf("%d", &remplazar);
+                            printf("Nuevo valor: "); 
+                            scanf("%d", &nuevoVal);
+                            Ptraux = Ptr;
+                            while(Ptraux != NULL) {
+                        if(Ptraux->d == remplazar){ 
+                            Ptraux->d = nuevoVal;
+                            Ptraux = Ptraux->Ptisig;
+                             }
+                            }
+                        printf("Proceso terminado \n");
+                            }
+                break;
+
+                case 4://ordenamiento por burbuja
                     if(Ptr==NULL){
                         printf("Nada que ordenar \n");
+                    }else{
+                        for(int i = 0;Ptraux->Ptisig!=NULL; i++){
+                            if(Ptraux->d>(Ptraux->Ptisig)->d){
+                                Ptrtemp=Ptraux;
+                                Ptraux=Ptraux->Ptisig;
+                                Ptraux->Ptisig=Ptraux->Ptisig;
+                                Ptraux->Ptisig=Ptrtemp;
+                            }else{
+                                Ptrant=Ptraux;
+                                Ptraux=Ptraux->Ptisig;
+                            }
+                        }    
                     }
                 break;
-                case 5:
+                case 5://salir
                         printf("Regresar \n");
                 break;
                 }
+
             }while(sub!=5);
                 break;
 
